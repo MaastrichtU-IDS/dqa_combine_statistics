@@ -12,7 +12,7 @@ queries :
     ?ds dqv:hasQualityMeasurement hcls:numberOfUniqueSubjects .
     ?ds dqv:hasQualityMeasurement hcls:numberOfUniqueProperties .
     ?ds dqv:hasQualityMeasurement hcls:numberOfUniqueObjects .
-    ?ds dqv:hasQualityMeasurement hcls:numberOfUniquenumberOfUniqueClasses .
+    ?ds dqv:hasQualityMeasurement hcls:numberOfUniqueClasses .
     ?ds dqv:hasQualityMeasurement hcls:numberOfUniqueLiterals .
     ?ds dqv:hasQualityMeasurement hcls:numberOfGraphs .
     } WHERE { ?ds  a dcat:Dataset}
