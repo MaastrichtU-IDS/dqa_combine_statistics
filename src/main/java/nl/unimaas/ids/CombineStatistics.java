@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.Map;
 
 import org.eclipse.rdf4j.model.Statement;
+import org.eclipse.rdf4j.query.QueryLanguage;
 import org.eclipse.rdf4j.query.Update;
 import org.eclipse.rdf4j.repository.Repository;
 import org.eclipse.rdf4j.repository.RepositoryConnection;
@@ -14,6 +15,7 @@ import org.eclipse.rdf4j.repository.sail.SailRepository;
 import org.eclipse.rdf4j.rio.RDFFormat;
 import org.eclipse.rdf4j.rio.RDFWriter;
 import org.eclipse.rdf4j.rio.Rio;
+import org.eclipse.rdf4j.sail.inferencer.fc.ForwardChainingRDFSInferencer;
 import org.eclipse.rdf4j.sail.memory.MemoryStore;
 import org.yaml.snakeyaml.Yaml;
 
@@ -21,7 +23,7 @@ public class CombineStatistics {
 	
 	
 	public static void main(String[] args) {
-		Repository repository = new SailRepository(new MemoryStore());
+		Repository repository = new SailRepository(new ForwardChainingRDFSInferencer(new MemoryStore()));
 		repository.initialize();
 		
 		try(RepositoryConnection conn = repository.getConnection()) {
@@ -37,13 +39,17 @@ public class CombineStatistics {
 			@SuppressWarnings("unchecked")
 			List<String> queries = (List<String>)yamlFile.get("queries");
 			for(String sparql : queries) {
-				Update update = conn.prepareUpdate(sparql);
+				System.out.println(sparql);
+				conn.begin();   
+				Update update = conn.prepareUpdate(QueryLanguage.SPARQL, sparql);
 				update.execute();
+				conn.commit();
 			}
 			
 			// write repository to file 
 			FileOutputStream fos = new FileOutputStream(args[0]);
 			RDFWriter rdfWriter = Rio.createWriter(RDFFormat.NTRIPLES, fos);
+			rdfWriter.startRDF();
 			try(RepositoryResult<Statement> result = conn.getStatements(null, null, null)) {
 				while(result.hasNext()) {
 					Statement stmt = result.next();

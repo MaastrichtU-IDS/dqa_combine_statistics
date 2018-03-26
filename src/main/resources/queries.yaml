@@ -3,7 +3,9 @@
 queries :
   # 6.6.1.1 To specify the number of triples in the dataset
   - |
-    CONSTRUCT {
+    prefix dqv: <http://www.w3.org/ns/dqv#>
+    prefix hcls: <http://www.w3.org/hcls#>
+    insert {
     hcls:numberOfTriples a dqv:QualityMeasurement.
     hcls:numberOfTriples dqv:isMeasurementOf dqv:scopeAndDatatypesMetric.
     hcls:numberOfTriples dqv:value ?triples
