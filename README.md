@@ -1,5 +1,5 @@
 # About
-This project combines multiple NTRIPLES files into one and creates a connection between the fairsharing dataset and statistics.
+This project combines multiple NTRIPLES files into one and creates a connection between the fairsharing dataset and statistics. Required arguments are an output-file and at least one input-file. 
 # Docker
 ## Build
 ```
