@@ -5,8 +5,14 @@ queries :
   - |
     prefix dqv: <http://www.w3.org/ns/dqv#>
     prefix hcls: <http://www.w3.org/hcls#>
+    prefix dcat: <http://www.w3.org/ns/dcat#>
     insert {
-    hcls:numberOfTriples a dqv:QualityMeasurement.
-    hcls:numberOfTriples dqv:isMeasurementOf dqv:scopeAndDatatypesMetric.
-    hcls:numberOfTriples dqv:value ?triples
-    } WHERE { SELECT (COUNT(*) AS ?triples) { ?s ?p ?o  } }
+    ?ds dqv:hasQualityMeasurement hcls:numberOfTriples .
+    ?ds dqv:hasQualityMeasurement hcls:numberOfEntities .
+    ?ds dqv:hasQualityMeasurement hcls:numberOfUniqueSubjects .
+    ?ds dqv:hasQualityMeasurement hcls:numberOfUniqueProperties .
+    ?ds dqv:hasQualityMeasurement hcls:numberOfUniqueObjects .
+    ?ds dqv:hasQualityMeasurement hcls:numberOfUniquenumberOfUniqueClasses .
+    ?ds dqv:hasQualityMeasurement hcls:numberOfUniqueLiterals .
+    ?ds dqv:hasQualityMeasurement hcls:numberOfGraphs .
+    } WHERE { ?ds  a dcat:Dataset}
