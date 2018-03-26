@@ -3,10 +3,10 @@
 queries :
   # 6.6.1.1 To specify the number of triples in the dataset
   - |
-    prefix dqv: <http://www.w3.org/ns/dqv#>
-    prefix hcls: <http://www.w3.org/hcls#>
-    prefix dcat: <http://www.w3.org/ns/dcat#>
-    insert {
+    PREFIX dqv: <http://www.w3.org/ns/dqv#>
+    PREFIX hcls: <http://www.w3.org/hcls#>
+    PREFIX dcat: <http://www.w3.org/ns/dcat#>
+    INSERT {
     ?ds dqv:hasQualityMeasurement hcls:numberOfTriples .
     ?ds dqv:hasQualityMeasurement hcls:numberOfEntities .
     ?ds dqv:hasQualityMeasurement hcls:numberOfUniqueSubjects .
