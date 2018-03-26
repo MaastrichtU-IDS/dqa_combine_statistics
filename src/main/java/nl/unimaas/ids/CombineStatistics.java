@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.Map;
 
 import org.eclipse.rdf4j.model.Statement;
+import org.eclipse.rdf4j.query.QueryLanguage;
 import org.eclipse.rdf4j.query.Update;
 import org.eclipse.rdf4j.repository.Repository;
 import org.eclipse.rdf4j.repository.RepositoryConnection;
@@ -37,13 +38,17 @@ public class CombineStatistics {
 			@SuppressWarnings("unchecked")
 			List<String> queries = (List<String>)yamlFile.get("queries");
 			for(String sparql : queries) {
-				Update update = conn.prepareUpdate(sparql);
+				System.out.println(sparql);
+				conn.begin();   
+				Update update = conn.prepareUpdate(QueryLanguage.SPARQL, sparql);
 				update.execute();
+				conn.commit();
 			}
 			
 			// write repository to file 
 			FileOutputStream fos = new FileOutputStream(args[0]);
 			RDFWriter rdfWriter = Rio.createWriter(RDFFormat.NTRIPLES, fos);
+			rdfWriter.startRDF();
 			try(RepositoryResult<Statement> result = conn.getStatements(null, null, null)) {
 				while(result.hasNext()) {
 					Statement stmt = result.next();
