@@ -15,7 +15,8 @@ docker run -it --rm \
   combine-statistics \
   /data/output.nt \
   /data/input1.nt \
-  /data/input2.nt 
+  /data/input2.ttl \
+  /data/input3.nq 
 ```
 ### Windows
 ```
@@ -24,5 +25,5 @@ docker run -it --rm ^
   combine-statistics ^
   /data/output.nt ^
   /data/input1.nt ^
-  /data/input2.nt 
+  /data/input2.ttl 
 ```

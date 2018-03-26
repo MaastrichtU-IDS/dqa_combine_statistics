@@ -28,7 +28,7 @@ public class CombineStatistics {
 		try(RepositoryConnection conn = repository.getConnection()) {
 			// Load the triples
 			for(int i=1; i<args.length;i++) {
-				conn.add(new File(args[i]), null, RDFFormat.NTRIPLES);
+				conn.add(new File(args[i]), null, Rio.getParserFormatForFileName(args[i]).get());
 			}
 			
 			// execute updates
