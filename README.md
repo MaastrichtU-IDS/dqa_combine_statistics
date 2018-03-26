@@ -19,10 +19,10 @@ docker run -it --rm \
 ```
 ### Windows
 ```
-docker run -it --rm \
-  -v c:/data/dqa-statistics/:/data/ \
-  combine-statistics \
-  /data/output.nt \
-  /data/input1.nt \
+docker run -it --rm ^
+  -v c:/data/dqa-statistics/:/data/ ^
+  combine-statistics ^
+  /data/output.nt ^
+  /data/input1.nt ^
   /data/input2.nt 
 ```
