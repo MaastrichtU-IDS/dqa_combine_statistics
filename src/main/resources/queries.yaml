@@ -4,8 +4,8 @@ queries :
   # 6.6.1.1 To specify the number of triples in the dataset
   - |
     PREFIX dqv: <http://www.w3.org/ns/dqv#>
-    PREFIX hcls: <http://www.w3.org/hcls#>
     PREFIX dcat: <http://www.w3.org/ns/dcat#>
+    PREFIX hcls: <http://www.w3.org/hcls#>
     INSERT {
     ?ds dqv:hasQualityMeasurement hcls:numberOfTriples .
     ?ds dqv:hasQualityMeasurement hcls:numberOfEntities .
@@ -16,3 +16,9 @@ queries :
     ?ds dqv:hasQualityMeasurement hcls:numberOfUniqueLiterals .
     ?ds dqv:hasQualityMeasurement hcls:numberOfGraphs .
     } WHERE { ?ds  a dcat:Dataset}
+  - |
+    PREFIX rut: <http://rdfunit.aksw.org/ns/core#>
+    PREFIX dcat: <http://www.w3.org/ns/dcat#>
+    PREFIX dqv: <http://www.w3.org/ns/dqv#>
+    insert { ?ds dqv:hasQualityMeasurement ?tr . } 
+    where { ?tr a rut:TestCaseResult . ?ds  a dcat:Dataset . }
