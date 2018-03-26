@@ -53,7 +53,6 @@ public class CombineStatistics {
 					Statement stmt = result.next();
 					rdfWriter.handleStatement(stmt);
 				}
-				
 			}
 			rdfWriter.endRDF();
 			fos.close();
@@ -64,9 +63,6 @@ public class CombineStatistics {
 			repository.shutDown();
 		}
 		
-		
 	}
-	
-	
 
 }
