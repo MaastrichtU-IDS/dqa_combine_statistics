@@ -30,7 +30,7 @@ public class CombineStatistics {
 				conn.add(new File(args[i]), null, RDFFormat.NTRIPLES);
 			}
 			
-			// exectue updates
+			// execute updates
 			Yaml yaml = new Yaml();
 			@SuppressWarnings("unchecked")
 			Map<String, Object> yamlFile = (Map<String, Object>)yaml.load(CombineStatistics.class.getResourceAsStream("/queries.yaml"));
