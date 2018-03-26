@@ -15,7 +15,6 @@ import org.eclipse.rdf4j.repository.sail.SailRepository;
 import org.eclipse.rdf4j.rio.RDFFormat;
 import org.eclipse.rdf4j.rio.RDFWriter;
 import org.eclipse.rdf4j.rio.Rio;
-import org.eclipse.rdf4j.sail.inferencer.fc.ForwardChainingRDFSInferencer;
 import org.eclipse.rdf4j.sail.memory.MemoryStore;
 import org.yaml.snakeyaml.Yaml;
 
@@ -23,7 +22,7 @@ public class CombineStatistics {
 	
 	
 	public static void main(String[] args) {
-		Repository repository = new SailRepository(new ForwardChainingRDFSInferencer(new MemoryStore()));
+		Repository repository = new SailRepository(new MemoryStore());
 		repository.initialize();
 		
 		try(RepositoryConnection conn = repository.getConnection()) {
