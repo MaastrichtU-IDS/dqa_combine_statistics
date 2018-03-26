@@ -38,7 +38,6 @@ public class CombineStatistics {
 			@SuppressWarnings("unchecked")
 			List<String> queries = (List<String>)yamlFile.get("queries");
 			for(String sparql : queries) {
-				System.out.println(sparql);
 				conn.begin();   
 				Update update = conn.prepareUpdate(QueryLanguage.SPARQL, sparql);
 				update.execute();
